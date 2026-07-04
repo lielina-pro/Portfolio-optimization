@@ -1,0 +1,37 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Data (raw pulls can be large / regenerated on demand)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*.csv
+!data/processed/.gitkeep
+
+# Model artifacts
+*.h5
+*.keras
+*.pkl
+*.joblib
+
+# OS / editor
+.DS_Store
+.idea/
+*.swp
+
+# Jupyter
+*.ipynb_checkpoints
+
+# Env secrets
+.env
+
+# Reports build artifacts
+reports/*.pdf
