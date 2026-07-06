@@ -101,6 +101,22 @@ def fit_auto_arima(train: pd.Series, seasonal: bool = False, m: int = 1, **kwarg
     return model
 
 
+def future_business_dates(last_date, n_periods: int) -> pd.DatetimeIndex:
+    """
+    Generate the next `n_periods` business-day dates strictly after `last_date`.
+
+    Parameters
+    ----------
+    last_date : str or pd.Timestamp
+        The last known historical date.
+    n_periods : int
+        Number of future business days to generate.
+    """
+    last_date = pd.Timestamp(last_date)
+    future_dates = pd.bdate_range(start=last_date + pd.Timedelta(days=1), periods=n_periods)
+    return future_dates
+
+
 def forecast_arima(model, n_periods: int, alpha: float = 0.05):
     """
     Generate a point forecast and confidence interval from a fitted

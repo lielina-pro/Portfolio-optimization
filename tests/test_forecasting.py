@@ -66,3 +66,11 @@ def test_create_sequences_shapes():
     # first sequence should be the first `window` values, predicting index `window`
     assert np.allclose(X[0].flatten(), data[:window])
     assert y[0] == data[window]
+
+
+def test_future_business_dates_starts_after_last_date():
+    from src.forecasting import future_business_dates
+    dates = future_business_dates("2026-06-29", n_periods=10)
+    assert dates.min() > pd.Timestamp("2026-06-29")
+    assert len(dates) == 10
+    assert all(d.dayofweek < 5 for d in dates)
